@@ -6,10 +6,12 @@ import Dashboard from '../pages/Dashboard';
 import useRequest from '../hooks/useRequest';
 import { format } from 'date-fns';
 
+const yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
+
 export const MembersManager: FC = () => {
   const classes = useStyles();
 
-  const [displayedDate, setDisplayedDate] = useState<Date>(new Date());
+  const [displayedDate, setDisplayedDate] = useState<Date>(yesterday);
   const formatted = format(displayedDate, 'dd-MM-yyyy');
 
   const [members, setMembers] = useState<{ [key: string]: Member[] }>({});
@@ -47,6 +49,7 @@ export const MembersManager: FC = () => {
       value={{
         loading,
         members: filteredMembers,
+        filters: displayedDate,
         setFilters,
         setDisplayedDate,
       }}
@@ -63,6 +66,7 @@ export const MembersManager: FC = () => {
 interface MembersContextType {
   loading: boolean;
   members: Member[] | undefined;
+  filters: Date;
   setFilters: (filters: string) => void;
   setDisplayedDate: (date: Date) => void;
 }
@@ -70,6 +74,7 @@ interface MembersContextType {
 export const MembersContext = createContext<MembersContextType>({
   loading: true,
   members: undefined,
+  filters: new Date(),
   setFilters: () => {},
   setDisplayedDate: () => {},
 });
