@@ -52,7 +52,7 @@ export const MembersManager: FC = () => {
       }}
     >
       {loading ? (
-        <CircularProgress className={classes.progress} />
+        <CircularProgress className={classes.progress} size={40} />
       ) : (
         <Dashboard />
       )}

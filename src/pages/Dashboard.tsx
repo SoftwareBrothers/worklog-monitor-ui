@@ -29,6 +29,7 @@ const useStyles = makeStyles({
   },
   mainContainer: {
     marginTop: '50px',
+    flexGrow: 1,
   },
 });
 

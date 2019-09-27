@@ -17,7 +17,7 @@ const AuthorizedApp = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <>
+    <Box minHeight="100vh" display="flex" flexDirection="column">
       <AppBar color="default" position="sticky">
         <Toolbar className={classes.toolbar}>
           <div>
@@ -36,10 +36,18 @@ const AuthorizedApp = () => {
           </div>
         </Toolbar>
       </AppBar>
-      <Box paddingTop={2} paddingBottom={2}>
+      <Box
+        display="flex"
+        paddingTop={2}
+        paddingBottom={2}
+        flexGrow={1}
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+      >
         <MembersManager />
       </Box>
-    </>
+    </Box>
   );
 };
 
