@@ -15,7 +15,7 @@ const AuthorizedApp = () => {
           <UserAvatar />
         </Toolbar>
       </AppBar>
-      <MembersManager loading={false} members={undefined} />
+      <MembersManager />
     </>
   );
 };
@@ -25,5 +25,6 @@ const useStyles = makeStyles({
     flexGrow: 1,
   },
 });
+
 
 export default AuthorizedApp;

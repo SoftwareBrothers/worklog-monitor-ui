@@ -3,7 +3,6 @@ import { Member } from '../../models/Member';
 import { CircularProgress, makeStyles, Theme } from '@material-ui/core';
 import { createStyles } from '@material-ui/styles';
 import Dashboard from '../../pages/dashboard/Dashboard';
-import { User } from '../../models/User';
 import fakeMembers from '../../fakeMembers';
 
 const useStyles = makeStyles((theme: Theme) =>
