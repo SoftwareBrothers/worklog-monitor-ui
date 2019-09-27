@@ -1,6 +1,6 @@
 import React from 'react';
 import LoginButton from '../../components/LoginButton';
-import { CssBaseline, Typography, Theme } from '@material-ui/core';
+import { CssBaseline, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
 const GuestApp = () => {
