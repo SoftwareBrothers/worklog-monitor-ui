@@ -13,7 +13,9 @@ const GuestApp = () => {
         <Typography className={classes.title} variant="h1">
           Worklog Monitor
         </Typography>
-        <LoginButton />
+        <div className={classes.button}>
+          <LoginButton />
+        </div>
       </div>
     </>
   );
@@ -29,6 +31,12 @@ const useStyles = makeStyles({
   },
   title: {
     marginBottom: 40,
+  },
+  button: {
+    height: 60,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
   },
 });
 

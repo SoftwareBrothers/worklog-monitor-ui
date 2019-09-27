@@ -2,13 +2,14 @@ import React, { FC, useState } from 'react';
 import GoogleLogin from 'react-google-login';
 import { User } from '../../models/User';
 import { useLogin } from '../AuthManager';
+import { CircularProgress } from '@material-ui/core';
 
 const LoginButton: FC = () => {
   const login = useLogin();
   const [loading, setLoading] = useState(false);
 
   if (loading) {
-    return <p>Loading</p>;
+    return <CircularProgress />;
   }
 
   return (
