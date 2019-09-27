@@ -4,12 +4,6 @@ import { makeStyles, Theme } from '@material-ui/core';
 import { createStyles } from '@material-ui/styles';
 import { MembersContext } from './MembersManager';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    textField: {},
-  }),
-);
-
 const SearchBar = () => {
   const classes = useStyles();
   const members = useContext(MembersContext).updateVisibleMembers;
@@ -18,20 +12,22 @@ const SearchBar = () => {
   };
 
   return (
-    <div>
-      <form>
-        <TextField
-          onChange={handleOnChage}
-          id="standard-search"
-          label="Search field"
-          type="search"
-          className={`MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl ${classes.textField}`}
-          fullWidth
-          margin="normal"
-        />
-      </form>
-    </div>
+    <form className={classes.container}>
+      <TextField
+        onChange={handleOnChage}
+        id="standard-search"
+        label="Search field"
+        type="search"
+        fullWidth
+      />
+    </form>
   );
 };
+
+const useStyles = makeStyles({
+  container: {
+    flexGrow: 1,
+  },
+});
 
 export default SearchBar;
