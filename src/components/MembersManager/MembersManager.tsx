@@ -13,10 +13,16 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+const getFakeMembers = (fakeMembers: any) => {
+    return fakeMembers.map((member: any) => {
+        return new Member(member, member.worklogs);
+    });
+};
+
 export const MembersManager: FC = () => {
   const classes = useStyles();
   const [loading, setLoading] = useState(false);
-  const [members, setMembers] = useState<Member[]>(fakeMembers);
+  const [members, setMembers] = useState<Member[]>(getFakeMembers(fakeMembers));
 
   const [visibleMembers, setVisibleMembers] = useState('');
   const updateVisibleMembers = (phrase: string): void => {

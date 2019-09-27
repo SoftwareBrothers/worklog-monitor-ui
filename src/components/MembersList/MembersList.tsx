@@ -1,6 +1,4 @@
 import React, { useContext } from 'react';
-import fakeMembers from '../../fakeMembers';
-import { Member } from '../../models/Member';
 import MemberElement from '../MemberElement/MemberElement';
 import { makeStyles, Theme } from '@material-ui/core';
 import { createStyles } from '@material-ui/styles';
@@ -26,6 +24,8 @@ const MembersList = () => {
             <MemberElement
               name={member.name}
               picture={member.picture}
+              id={member.id}
+              worklogs={member.worklogs}
               key={member.id}
             />
           );
