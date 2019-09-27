@@ -16,7 +16,8 @@ export const MembersManager: FC = () => {
 
   const [request, loading, error] = useRequest(
     (date: string) => ({
-      url: `/api/aggregator/worklogs?date=${date}`,
+      url: `/api/aggregator/worklogs`,
+      params: { date },
     }),
     (data, date) =>
       setMembers(prev => ({
