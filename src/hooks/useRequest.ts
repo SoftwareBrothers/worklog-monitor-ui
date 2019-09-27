@@ -3,7 +3,13 @@ import Axios, {
   CancelTokenSource,
   AxiosError,
 } from 'axios';
-import { useCallback, useState, useRef, useEffect } from 'react';
+import {
+  useCallback,
+  useState,
+  useRef,
+  useEffect,
+  DependencyList,
+} from 'react';
 
 type RequestConfig<P extends unknown[]> = (...params: P) => AxiosRequestConfig;
 type ResponseHandler<P extends unknown[]> = (data: any, ...params: P) => void;
@@ -11,6 +17,7 @@ type ResponseHandler<P extends unknown[]> = (data: any, ...params: P) => void;
 const useRequest = <P extends unknown[]>(
   requestConfig: RequestConfig<P>,
   responseHandler: ResponseHandler<P>,
+  deps: DependencyList,
 ) => {
   const [loading, setLoading] = useState(0);
   const [error, setError] = useState<string | undefined>(undefined);
@@ -25,13 +32,16 @@ const useRequest = <P extends unknown[]>(
     };
   }, []);
 
+  const memoizedRequestConfig = useCallback(requestConfig, deps);
+  const memoizedResponseHandler = useCallback(responseHandler, deps);
+
   const request = useCallback(
     async (...params: P) => {
       const source = Axios.CancelToken.source();
       sourceRef.current.push(source);
 
       const config: AxiosRequestConfig = {
-        ...requestConfig(...params),
+        ...memoizedRequestConfig(...params),
         cancelToken: source.token,
       };
 
@@ -40,7 +50,7 @@ const useRequest = <P extends unknown[]>(
 
       try {
         const response = await Axios(config);
-        responseHandler(response.data, ...params);
+        memoizedResponseHandler(response.data, ...params);
       } catch (thrown) {
         if (Axios.isCancel(thrown)) {
           // this was canceled, do nothing
@@ -59,7 +69,7 @@ const useRequest = <P extends unknown[]>(
       const sourceIndex = sourceRef.current.indexOf(source);
       sourceRef.current.splice(sourceIndex, 1);
     },
-    [requestConfig, responseHandler],
+    [memoizedRequestConfig, memoizedResponseHandler],
   );
 
   return [request, Boolean(loading), error] as const;

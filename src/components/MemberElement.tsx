@@ -16,7 +16,7 @@ import { getDuration, sumWorklogs } from '../utils/TimeCalculations';
 
 interface Props {
   name: string;
-  picture: string;
+  picture: string | undefined;
   id: string;
   worklogs?: Worklog[];
 }
