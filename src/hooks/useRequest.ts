@@ -10,6 +10,7 @@ import {
   useEffect,
   DependencyList,
 } from 'react';
+import { useToken } from '../components/AuthManager';
 
 type RequestConfig<P extends unknown[]> = (...params: P) => AxiosRequestConfig;
 type ResponseHandler<P extends unknown[]> = (data: any, ...params: P) => void;
@@ -19,6 +20,20 @@ const useRequest = <P extends unknown[]>(
   responseHandler: ResponseHandler<P>,
   deps: DependencyList,
 ) => {
+  const token = useToken();
+  const interceptor = useRef<number>();
+
+  useEffect(() => {
+    if (token) {
+      interceptor.current = Axios.interceptors.request.use(config => {
+        config.params = { ...config.params, access_token: token };
+        return config;
+      });
+    } else if (interceptor.current !== undefined) {
+      Axios.interceptors.request.eject(interceptor.current);
+    }
+  }, [token]);
+
   const [loading, setLoading] = useState(0);
   const [error, setError] = useState<string | undefined>(undefined);
 

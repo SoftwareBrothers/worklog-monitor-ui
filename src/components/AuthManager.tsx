@@ -19,18 +19,6 @@ interface Props {
 const AuthManager: FC<Props> = ({ Authenticated, Anonymous }) => {
   const [token, setToken] = useState<string | null>(existingToken);
   const [user, setUser] = useState<User | null>(existingUser);
-  const interceptor = useRef<number>();
-
-  useEffect(() => {
-    if (token) {
-      interceptor.current = Axios.interceptors.request.use(config => {
-        config.headers = { Authorization: `Bearer ${token}` };
-        return config;
-      });
-    } else if (interceptor.current !== undefined) {
-      Axios.interceptors.request.eject(interceptor.current);
-    }
-  }, [token]);
 
   const login = useCallback((user: User, token: string) => {
     setUser(user);
@@ -47,7 +35,7 @@ const AuthManager: FC<Props> = ({ Authenticated, Anonymous }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, token }}>
       {user ? <Authenticated /> : <Anonymous />}
     </AuthContext.Provider>
   );
@@ -61,12 +49,14 @@ interface AuthContextType {
   user: User | null;
   login: (user: User, token: string) => void;
   logout: () => void;
+  token: string | null;
 }
 
 const AuthContext = createContext<AuthContextType>({
   user: null,
   login: () => {},
   logout: () => {},
+  token: null,
 });
 
 const useUser = () => {
@@ -95,4 +85,12 @@ const useLogout = () => {
   return logout;
 };
 
-export { AuthManager, useUser, useLogin, useLogout };
+const useToken = () => {
+  const { token } = useContext(AuthContext);
+  if (!token) {
+    throw new Error('');
+  }
+  return token;
+};
+
+export { AuthManager, useUser, useLogin, useLogout, useToken };
