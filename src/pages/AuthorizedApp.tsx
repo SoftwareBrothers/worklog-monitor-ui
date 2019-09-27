@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MembersManager } from '../components/MembersManager';
 import UserAvatar from '../components/UserAvatar';
 import {
@@ -12,9 +12,19 @@ import {
 } from '@material-ui/core';
 import { Menu } from '@material-ui/icons';
 
+const imgUrl =
+  'https://recipes-secure-graphics.grocerywebsite.com/0_GraphicsRecipes/4589_4k.jpg';
+
 const AuthorizedApp = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (document.images) {
+      const img = new Image();
+      img.src = imgUrl;
+    }
+  }, []);
 
   return (
     <Box minHeight="100vh" display="flex" flexDirection="column">
@@ -71,8 +81,7 @@ const useStyles = makeStyles({
     height: '100%',
     width: 400,
     maxWidth: '80vw',
-    background:
-      'url("https://recipes-secure-graphics.grocerywebsite.com/0_GraphicsRecipes/4589_4k.jpg")',
+    background: `url("${imgUrl}")`,
     backgroundPosition: 'center',
     backgroundSize: 'cover',
   },
