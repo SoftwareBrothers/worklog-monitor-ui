@@ -127,7 +127,7 @@ const MemberElement = (props: Props) => {
         <div className={classes.panelSummaryRight}>
           {props.worklogs !== undefined && props.worklogs.length > 0 ? (
             <div className={getWorklogsScale(sumWorklogs(props.worklogs))}>
-              <span>{getDuration(sumWorklogs(props.worklogs))} logged</span>
+              <span>{getDuration(sumWorklogs(props.worklogs))}</span>
               <span className={classes.worklogsTotal}>
                 {' '}
                 in ({props.worklogs.length} worklogs)
