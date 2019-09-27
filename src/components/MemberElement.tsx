@@ -70,15 +70,40 @@ const useStyles = makeStyles((theme: Theme) =>
       color: '#707070',
       marginLeft: '10px',
     },
+    perfect: {
+      color: '#558B2F',
+    },
+    good: {
+      color: '#9E9D24',
+    },
+    average: {
+      color: '#F9A825',
+    },
+    poor: {
+      color: '#FF8F00',
+    },
+    unacceptable: {
+      color: '#EF6C00',
+    },
   }),
 );
 
 const MemberElement = (props: Props) => {
   const classes = useStyles();
-
-  if (props.worklogs !== undefined && props.worklogs.length > 0) {
-      console.log(sumWorklogs(props.worklogs));
-  }
+  const getWorklogsScale = (total: number): string => {
+    switch (true) {
+      case total > 27000:
+        return classes.perfect;
+      case total > 21600:
+        return classes.good;
+      case total > 14400:
+        return classes.average;
+      case total > 7200:
+        return classes.poor;
+      default:
+        return classes.unacceptable;
+    }
+  };
 
   return (
     <ExpansionPanel className={classes.memberElement}>
@@ -101,7 +126,7 @@ const MemberElement = (props: Props) => {
         </div>
         <div className={classes.panelSummaryRight}>
           {props.worklogs !== undefined && props.worklogs.length > 0 ? (
-            <div>
+            <div className={getWorklogsScale(sumWorklogs(props.worklogs))}>
               <span>{getDuration(sumWorklogs(props.worklogs))} logged</span>
               <span className={classes.worklogsTotal}>
                 {' '}

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import DaySelector from '../components/DaySelector';
 import SearchBar from '../components/SearchBar';
 import { Container, Box } from '@material-ui/core';
