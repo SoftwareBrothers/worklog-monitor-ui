@@ -67,30 +67,22 @@ const useUser = () => {
   return user;
 };
 
-const useLogin = () => {
-  const { user, login } = useContext(AuthContext);
-  if (user) {
-    throw new Error(
-      'useLogin hook called when user already present in context',
-    );
-  }
-  return login;
-};
-
-const useLogout = () => {
-  const { user, logout } = useContext(AuthContext);
-  if (!user) {
-    throw new Error('useLogout hook called when no user present in context');
-  }
-  return logout;
-};
-
 const useToken = () => {
   const { token } = useContext(AuthContext);
   if (!token) {
     throw new Error('useToken hook called when no user present in context');
   }
   return token;
+};
+
+const useLogin = () => {
+  const { login } = useContext(AuthContext);
+  return login;
+};
+
+const useLogout = () => {
+  const { logout } = useContext(AuthContext);
+  return logout;
 };
 
 export { AuthManager, useUser, useLogin, useLogout, useToken };
