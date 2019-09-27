@@ -130,7 +130,7 @@ const MemberElement = (props: Props) => {
               <span>{getDuration(sumWorklogs(props.worklogs))} logged</span>
               <span className={classes.worklogsTotal}>
                 {' '}
-                in ({props.worklogs.length} worklogs) -> {sumWorklogs(props.worklogs)}
+                in ({props.worklogs.length} worklogs)
               </span>
             </div>
           ) : (
