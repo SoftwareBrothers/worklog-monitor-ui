@@ -25,7 +25,7 @@ export class Member implements MemberInterface {
 
   constructor(member: any, worklogs?: preWorklog[]) {
     this.id = member.id;
-    this.name = member.name;
+    this.name = `${member.firstName} ${member.lastName}`;
     this.picture = member.picture;
     this.worklogs = worklogs ? worklogs.map(mapJsonToWorklog): [];
 
