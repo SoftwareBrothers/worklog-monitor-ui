@@ -5,8 +5,9 @@ export const formatDatetime = (datetime: Date): string => {
   return format(datetime, 'dd.MM.yyyy hh:mm:ss');
 };
 export const getDuration = (seconds: number): string => {
-  const date = addSeconds(new Date(0), seconds);
-  return format(date, "h'h' m'm'");
+  const minutes = Math.floor(seconds / 60) % 60;
+  const hours = Math.floor(seconds / (60 * 60));
+  return `${hours}h ${minutes}m`;
 };
 
 export const sumWorklogs = (worklogs: Worklog[]) => {
