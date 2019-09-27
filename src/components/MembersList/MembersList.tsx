@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import fakeMembers from '../../fakeMembers';
 import { Member } from '../../models/Member';
 import MemberElement from '../MemberElement/MemberElement';
+import { makeStyles, Theme } from '@material-ui/core';
+import { createStyles } from '@material-ui/styles';
+import { MembersContext } from '../MembersManager/MembersManager';
 
-const getFakeMembers = () => {
-  return fakeMembers;
-};
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    memberList: {
+      marginTop: '30px',
+    },
+  }),
+);
 
 const MembersList = () => {
-  const members: Member[] | undefined = getFakeMembers();
+  const members = useContext(MembersContext).visibleMembers;
+  const classes = useStyles();
 
   return (
-    <div className={'members-list'}>
+    <div className={classes.memberList}>
       {members !== undefined &&
         members.map(member => {
           return (
