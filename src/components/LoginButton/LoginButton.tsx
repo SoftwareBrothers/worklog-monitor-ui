@@ -21,7 +21,6 @@ const LoginButton: FC = () => {
         setLoading(false);
       }}
       onSuccess={async (res: any) => {
-        console.log(res);
         const { profileObj, accessToken } = res;
         const { name, imageUrl, googleId } = profileObj;
         const user: User = {
