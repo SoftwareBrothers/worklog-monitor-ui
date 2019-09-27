@@ -1,14 +1,10 @@
-import React, { createContext, FC } from 'react';
+import React, { createContext, FC, useEffect, useState } from 'react';
 import { Member } from '../../models/Member';
 import { CircularProgress, makeStyles, Theme } from '@material-ui/core';
 import { createStyles } from '@material-ui/styles';
 import Dashboard from '../../pages/dashboard/Dashboard';
 import { User } from '../../models/User';
-
-interface Props {
-  loading: boolean;
-  members: Member[] | undefined;
-}
+import fakeMembers from '../../fakeMembers';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -18,11 +14,30 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export const MembersManager: FC<Props> = ({ loading, members }) => {
+export const MembersManager: FC = () => {
   const classes = useStyles();
+  const [loading, setLoading] = useState(false);
+  const [members, setMembers] = useState<Member[]>(fakeMembers);
+
+  const [visibleMembers, setVisibleMembers] = useState('');
+  const updateVisibleMembers = (phrase: string): void => {
+    setVisibleMembers(phrase);
+  };
+
+  console.log(visibleMembers);
+  console.log(members);
 
   return (
-    <MembersContext.Provider value={{ loading, members }}>
+    <MembersContext.Provider
+      value={{
+        loading,
+        members,
+        visibleMembers: members.filter(member => {
+          return member.name.toLowerCase().indexOf(visibleMembers) > -1;
+        }),
+        updateVisibleMembers,
+      }}
+    >
       {loading ? (
         <CircularProgress className={classes.progress} />
       ) : (
@@ -35,9 +50,13 @@ export const MembersManager: FC<Props> = ({ loading, members }) => {
 interface MembersContextType {
   loading: boolean;
   members: Member[] | undefined;
+  visibleMembers: Member[] | undefined;
+  updateVisibleMembers: any;
 }
 
-const MembersContext = createContext<MembersContextType>({
+export const MembersContext = createContext<MembersContextType>({
   loading: true,
   members: undefined,
+  visibleMembers: undefined,
+  updateVisibleMembers: () => {},
 });

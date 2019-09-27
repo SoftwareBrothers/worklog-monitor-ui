@@ -5,9 +5,10 @@ import {
   makeStyles,
   Theme,
   Typography,
-  ExpansionPanelDetails
-} from "@material-ui/core";
-import {createStyles} from "@material-ui/styles";
+  ExpansionPanelDetails,
+  Chip,
+} from '@material-ui/core';
+import { createStyles } from '@material-ui/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 interface Props {
@@ -15,39 +16,94 @@ interface Props {
 }
 
 const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-      heading: {
-        fontSize: theme.typography.pxToRem(15),
-        fontWeight: theme.typography.fontWeightRegular,
-      },
-    }),
+  createStyles({
+    worklogList: {
+      listStyleType: 'none',
+      width: '100%',
+      paddingLeft: 0,
+    },
+    worklogElement: {
+      padding: '5px 0',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignContent: 'center',
+    },
+    chip: {
+      margin: theme.spacing(1),
+    },
+    worklogLeft: {
+      textAlign: 'left',
+      alignItems: 'center',
+      display: 'flex',
+    },
+    worklogRight: {
+      textAlign: 'right',
+    },
+  }),
 );
 
 const WorklogsList = (props: Props) => {
   const classes = useStyles();
 
   return (
-      <ExpansionPanel>
-        <ExpansionPanelSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-        >
-          <Typography className={classes.heading}>Expansion Panel 1</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-            <ul>
-              <li>26.09.2019 - Working hard on hackathon [ 16h 20m ]</li>
-              <li>26.09.2019 - Working hard on hackathon [ 16h 20m ]</li>
-              <li>26.09.2019 - Working hard on hackathon [ 16h 20m ]</li>
-              <li>26.09.2019 - Working hard on hackathon [ 16h 20m ]</li>
-              <li>26.09.2019 - Working hard on hackathon [ 16h 20m ]</li>
-              <li>26.09.2019 - Working hard on hackathon [ 16h 20m ]</li>
-              <li>26.09.2019 - Working hard on hackathon [ 16h 20m ]</li>
-            </ul>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-
+    <ul className={classes.worklogList}>
+      <li className={classes.worklogElement}>
+        <div className={classes.worklogLeft}>
+          <span>24.05.2017, 10:30</span> - Working hard on hackathon{' '}
+        </div>
+        <div className={classes.worklogRight}>
+          <Chip size="small" label="3h 15m" className={classes.chip} />
+        </div>
+      </li>
+      <li className={classes.worklogElement}>
+        <div className={classes.worklogLeft}>
+          <span>24.05.2017, 10:30</span> - Working hard on hackathon{' '}
+        </div>
+        <div className={classes.worklogRight}>
+          <Chip size="small" label="3h 15m" className={classes.chip} />
+        </div>
+      </li>
+      <li className={classes.worklogElement}>
+        <div className={classes.worklogLeft}>
+          <span>24.05.2017, 10:30</span> - Working hard on hackathon{' '}
+        </div>
+        <div className={classes.worklogRight}>
+          <Chip size="small" label="3h 15m" className={classes.chip} />
+        </div>
+      </li>
+      <li className={classes.worklogElement}>
+        <div className={classes.worklogLeft}>
+          <span>24.05.2017, 10:30</span> - Working hard on hackathon{' '}
+        </div>
+        <div className={classes.worklogRight}>
+          <Chip size="small" label="3h 15m" className={classes.chip} />
+        </div>
+      </li>
+      <li className={classes.worklogElement}>
+        <div className={classes.worklogLeft}>
+          <span>24.05.2017, 10:30</span> - Working hard on hackathon{' '}
+        </div>
+        <div className={classes.worklogRight}>
+          <Chip size="small" label="3h 15m" className={classes.chip} />
+        </div>
+      </li>
+      <li className={classes.worklogElement}>
+        <div className={classes.worklogLeft}>
+          <span>24.05.2017, 10:30</span> - Working hard on hackathon{' '}
+        </div>
+        <div className={classes.worklogRight}>
+          <Chip size="small" label="3h 15m" className={classes.chip} />
+        </div>
+      </li>
+      <li className={classes.worklogElement}>
+        <div className={classes.worklogLeft}>
+          <span>24.05.2017, 10:30</span> - Working hard on hackathon{' '}
+        </div>
+        <div className={classes.worklogRight}>
+          <Chip size="small" label="3h 15m" className={classes.chip} />
+        </div>
+      </li>
+    </ul>
   );
 };
 

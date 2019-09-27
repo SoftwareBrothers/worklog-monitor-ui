@@ -6,7 +6,7 @@ const AuthorizedApp = () => {
   return (
     <>
       <LoggedUser />
-      <MembersManager loading={false} members={undefined} />
+      <MembersManager />
     </>
   );
 };
