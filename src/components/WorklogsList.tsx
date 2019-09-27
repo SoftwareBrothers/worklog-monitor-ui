@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { makeStyles, Theme, Chip } from '@material-ui/core';
 import { createStyles } from '@material-ui/styles';
 import { Worklog } from '../models/Worklog';
-import Moment from 'moment';
+import { format, addSeconds } from 'date-fns';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -45,7 +45,11 @@ interface Props {
 const WorklogsList = (props: Props) => {
   const classes = useStyles();
   const formatDatetime = (datetime: Date): string => {
-    return Moment(datetime).format('MMM Do YY, hh:mm:ss');
+    return format(datetime, 'dd.MM.yyyy hh:mm:ss');
+  };
+  const getDuration = (seconds: number): string => {
+    const date = addSeconds(new Date(0), seconds);
+    return format(date, "h'h' m'm'");
   };
 
   return (
@@ -66,7 +70,7 @@ const WorklogsList = (props: Props) => {
                 <div className={classes.worklogRight}>
                   <Chip
                     size="small"
-                    label={worklog.timeSpentSeconds}
+                    label={getDuration(worklog.timeSpentSeconds)}
                     className={classes.chip}
                   />
                 </div>
