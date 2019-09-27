@@ -36,7 +36,7 @@ const AuthManager: FC<Props> = ({ Authenticated, Anonymous }) => {
 
   return (
     <AuthContext.Provider value={{ user, login, logout, token }}>
-      {user ? <Authenticated /> : <Anonymous />}
+      {user && token ? <Authenticated /> : <Anonymous />}
     </AuthContext.Provider>
   );
 };
@@ -88,7 +88,7 @@ const useLogout = () => {
 const useToken = () => {
   const { token } = useContext(AuthContext);
   if (!token) {
-    throw new Error('');
+    throw new Error('useToken hook called when no user present in context');
   }
   return token;
 };
