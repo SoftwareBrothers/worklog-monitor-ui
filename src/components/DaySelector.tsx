@@ -24,12 +24,12 @@ const DaySelector: FC<Props> = ({ defaultDay, onChange }) => {
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <KeyboardDatePicker
-        variant="inline"
         format="dd.MM.yyy"
         id="date-picker"
         label="Pick date"
         value={selected}
         onChange={handleDateChange}
+        disableFuture
       />
     </MuiPickersUtilsProvider>
   );
