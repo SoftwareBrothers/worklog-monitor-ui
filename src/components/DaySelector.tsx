@@ -8,14 +8,17 @@ import {
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 
 interface Props {
-  defaultDay: Date | null;
-  onChange: (date: Date | null) => void;
+  defaultDay: Date;
+  onChange: (date: Date) => void;
 }
 
 const DaySelector: FC<Props> = ({ defaultDay, onChange }) => {
-  const [selected, setSelected] = useState<Date | null>(defaultDay);
+  const [selected, setSelected] = useState<Date>(defaultDay);
 
   const handleDateChange = (date: MaterialUiPickersDate) => {
+    if (!date) {
+      return;
+    }
     setSelected(date);
     onChange(date);
   };
