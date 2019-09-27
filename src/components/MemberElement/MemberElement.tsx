@@ -1,4 +1,5 @@
 import React from 'react';
+import WorklogsList from "../WorklogsList/WorklogsList";
 
 interface Props {
   name: string;
@@ -10,6 +11,7 @@ const MemberElement = (props: Props) => {
     <div>
       <img src={props.picture} alt={props.name} />
       <span>{props.name}</span>
+        <WorklogsList showAll={false} />
     </div>
   );
 };
