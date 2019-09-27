@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import MemberElement from '../MemberElement/MemberElement';
+import MemberElement from './MemberElement';
 import { makeStyles, Theme } from '@material-ui/core';
 import { createStyles } from '@material-ui/styles';
-import { MembersContext } from '../MembersManager/MembersManager';
+import { MembersContext } from './MembersManager';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { makeStyles, Theme, Chip } from '@material-ui/core';
 import { createStyles } from '@material-ui/styles';
-import { Worklog } from '../../models/Worklog';
+import { Worklog } from '../models/Worklog';
 import Moment from 'moment';
 
 const useStyles = makeStyles((theme: Theme) =>
