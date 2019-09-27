@@ -1,17 +1,37 @@
-import React from 'react';
+import 'date-fns';
+import React, { useState, FC } from 'react';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
+import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
+import { makeStyles } from '@material-ui/styles';
 
-const DaySelector = () => {
+interface Props {
+  defaultDay: Date | null;
+  onChange: (date: Date | null) => void;
+}
+
+const DaySelector: FC<Props> = ({ defaultDay, onChange }) => {
+  const [selected, setSelected] = useState<Date | null>(defaultDay);
+
+  const handleDateChange = (date: MaterialUiPickersDate) => {
+    setSelected(date);
+    onChange(date);
+  };
+
   return (
-    <div>
-      Switch day:{' '}
-      <select>
-        <option>Today</option>
-        <option>Yesterday</option>
-        <option>2 days ago</option>
-        <option>3 days ago</option>
-        <option>4 days ago</option>
-      </select>
-    </div>
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <KeyboardDatePicker
+        variant="inline"
+        format="dd.MM.yyy"
+        id="date-picker"
+        label="Pick date"
+        value={selected}
+        onChange={handleDateChange}
+      />
+    </MuiPickersUtilsProvider>
   );
 };
 
