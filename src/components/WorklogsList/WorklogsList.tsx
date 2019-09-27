@@ -1,35 +1,53 @@
 import React from 'react';
+import {
+  ExpansionPanelSummary,
+  ExpansionPanel,
+  makeStyles,
+  Theme,
+  Typography,
+  ExpansionPanelDetails
+} from "@material-ui/core";
+import {createStyles} from "@material-ui/styles";
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 interface Props {
   showAll: boolean;
 }
 
-const WorklogsList = (props: Props) => {
-  let showAll = props.showAll;
-  let listClassname = '';
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+      heading: {
+        fontSize: theme.typography.pxToRem(15),
+        fontWeight: theme.typography.fontWeightRegular,
+      },
+    }),
+);
 
-  const toggleWorklogs = (): void => {
-    if (showAll) {
-      showAll = false;
-      listClassname = '';
-    }
-    showAll = true;
-    listClassname = 'active';
-  };
+const WorklogsList = (props: Props) => {
+  const classes = useStyles();
 
   return (
-    <div>
-      <button onClick={toggleWorklogs}>Show all</button>
-      <ul className={listClassname}>
-        <li>26.09.2019 - Working hard on hackathon [ 16h 20m ]</li>
-        <li>26.09.2019 - Working hard on hackathon [ 16h 20m ]</li>
-        <li>26.09.2019 - Working hard on hackathon [ 16h 20m ]</li>
-        <li>26.09.2019 - Working hard on hackathon [ 16h 20m ]</li>
-        <li>26.09.2019 - Working hard on hackathon [ 16h 20m ]</li>
-        <li>26.09.2019 - Working hard on hackathon [ 16h 20m ]</li>
-        <li>26.09.2019 - Working hard on hackathon [ 16h 20m ]</li>
-      </ul>
-    </div>
+      <ExpansionPanel>
+        <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+        >
+          <Typography className={classes.heading}>Expansion Panel 1</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+            <ul>
+              <li>26.09.2019 - Working hard on hackathon [ 16h 20m ]</li>
+              <li>26.09.2019 - Working hard on hackathon [ 16h 20m ]</li>
+              <li>26.09.2019 - Working hard on hackathon [ 16h 20m ]</li>
+              <li>26.09.2019 - Working hard on hackathon [ 16h 20m ]</li>
+              <li>26.09.2019 - Working hard on hackathon [ 16h 20m ]</li>
+              <li>26.09.2019 - Working hard on hackathon [ 16h 20m ]</li>
+              <li>26.09.2019 - Working hard on hackathon [ 16h 20m ]</li>
+            </ul>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+
   );
 };
 
