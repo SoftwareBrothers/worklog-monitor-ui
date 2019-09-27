@@ -1,13 +1,19 @@
 import React from 'react';
-import { MembersManager } from '../../components/MembersManager/MembersManager';
-import UserAvatar from '../../components/UserAvatar/UserAvatar';
-import { AppBar, Toolbar, Typography, makeStyles } from '@material-ui/core';
+import { MembersManager } from '../components/MembersManager';
+import UserAvatar from '../components/UserAvatar';
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  makeStyles,
+  Box,
+} from '@material-ui/core';
 
 const AuthorizedApp = () => {
   const classes = useStyles();
   return (
     <>
-      <AppBar color="default">
+      <AppBar color="default" position="sticky">
         <Toolbar>
           <Typography variant="h4" className={classes.title}>
             Worklog Monitor
@@ -15,7 +21,9 @@ const AuthorizedApp = () => {
           <UserAvatar />
         </Toolbar>
       </AppBar>
-      <MembersManager />
+      <Box paddingTop={2} paddingBottom={2}>
+        <MembersManager />
+      </Box>
     </>
   );
 };
@@ -25,6 +33,5 @@ const useStyles = makeStyles({
     flexGrow: 1,
   },
 });
-
 
 export default AuthorizedApp;

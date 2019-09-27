@@ -1,6 +1,6 @@
 import { Avatar, Button, Typography, Tooltip } from '@material-ui/core';
 import React, { FC } from 'react';
-import { useLogout, useUser } from '../AuthManager';
+import { useLogout, useUser } from './AuthManager';
 import { makeStyles } from '@material-ui/styles';
 
 const UserAvatar: FC = () => {
