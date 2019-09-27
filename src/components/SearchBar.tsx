@@ -1,14 +1,13 @@
 import React, { useContext } from 'react';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles, Theme } from '@material-ui/core';
-import { createStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core';
 import { MembersContext } from './MembersManager';
 
 const SearchBar = () => {
   const classes = useStyles();
-  const members = useContext(MembersContext).updateVisibleMembers;
+  const { setFilters } = useContext(MembersContext);
   const handleOnChage = (event: any) => {
-    members(event.target.value.toLowerCase());
+    setFilters(event.target.value.toLowerCase());
   };
 
   return (

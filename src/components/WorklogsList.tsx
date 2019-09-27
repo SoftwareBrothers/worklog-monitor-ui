@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { makeStyles, Theme, Chip } from '@material-ui/core';
 import { createStyles } from '@material-ui/styles';
 import { Worklog } from '../models/Worklog';

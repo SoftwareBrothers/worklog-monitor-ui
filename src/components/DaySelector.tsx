@@ -6,7 +6,6 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
-import { makeStyles } from '@material-ui/styles';
 
 interface Props {
   defaultDay: Date | null;
@@ -24,12 +23,12 @@ const DaySelector: FC<Props> = ({ defaultDay, onChange }) => {
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <KeyboardDatePicker
-        variant="inline"
         format="dd.MM.yyy"
         id="date-picker"
         label="Pick date"
         value={selected}
         onChange={handleDateChange}
+        disableFuture
       />
     </MuiPickersUtilsProvider>
   );

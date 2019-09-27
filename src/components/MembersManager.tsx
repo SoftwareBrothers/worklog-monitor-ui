@@ -1,4 +1,4 @@
-import React, { createContext, FC, useEffect, useState } from 'react';
+import React, { createContext, FC, useState } from 'react';
 import { Member } from '../models/Member';
 import { CircularProgress, makeStyles, Theme } from '@material-ui/core';
 import { createStyles } from '@material-ui/styles';
@@ -24,20 +24,18 @@ export const MembersManager: FC = () => {
   const [loading, setLoading] = useState(false);
   const [members, setMembers] = useState<Member[]>(getFakeMembers(fakeMembers));
 
-  const [visibleMembers, setVisibleMembers] = useState('');
-  const updateVisibleMembers = (phrase: string): void => {
-    setVisibleMembers(phrase);
-  };
+  const [filters, setFilters] = useState('');
+
+  const filteredMembers = members.filter(member => {
+    return member.name.toLowerCase().indexOf(filters) > -1;
+  });
 
   return (
     <MembersContext.Provider
       value={{
         loading,
-        members,
-        visibleMembers: members.filter(member => {
-          return member.name.toLowerCase().indexOf(visibleMembers) > -1;
-        }),
-        updateVisibleMembers,
+        members: filteredMembers,
+        setFilters,
       }}
     >
       {loading ? (
@@ -52,13 +50,11 @@ export const MembersManager: FC = () => {
 interface MembersContextType {
   loading: boolean;
   members: Member[] | undefined;
-  visibleMembers: Member[] | undefined;
-  updateVisibleMembers: any;
+  setFilters: (filters: string) => void;
 }
 
 export const MembersContext = createContext<MembersContextType>({
   loading: true,
   members: undefined,
-  visibleMembers: undefined,
-  updateVisibleMembers: () => {},
+  setFilters: () => {},
 });
