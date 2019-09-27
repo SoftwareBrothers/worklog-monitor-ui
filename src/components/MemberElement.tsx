@@ -12,6 +12,7 @@ import {
 import { createStyles } from '@material-ui/styles';
 import ExpandMoreIcon from '@material-ui/core/SvgIcon/SvgIcon';
 import { Worklog } from '../models/Worklog';
+import { getDuration, sumWorklogs } from '../utils/TimeCalculations';
 
 interface Props {
   name: string;
@@ -55,7 +56,7 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: 'center',
     },
     panelSummaryRight: {
-      width: '200px',
+      width: '300px',
       textAlign: 'right',
     },
     moreInfo: {
@@ -64,11 +65,20 @@ const useStyles = makeStyles((theme: Theme) =>
       borderStyle: 'solid',
       backgroundColor: '#ffffff',
     },
+    worklogsTotal: {
+      fontSize: '12px',
+      color: '#707070',
+      marginLeft: '10px',
+    },
   }),
 );
 
 const MemberElement = (props: Props) => {
   const classes = useStyles();
+
+  if (props.worklogs !== undefined && props.worklogs.length > 0) {
+      console.log(sumWorklogs(props.worklogs));
+  }
 
   return (
     <ExpansionPanel className={classes.memberElement}>
@@ -90,7 +100,17 @@ const MemberElement = (props: Props) => {
           <Typography className={classes.heading}>{props.name}</Typography>
         </div>
         <div className={classes.panelSummaryRight}>
-          <span>3 worklogs [8h 20m]</span>
+          {props.worklogs !== undefined && props.worklogs.length > 0 ? (
+            <div>
+              <span>{getDuration(sumWorklogs(props.worklogs))} logged</span>
+              <span className={classes.worklogsTotal}>
+                {' '}
+                in ({props.worklogs.length} worklogs)
+              </span>
+            </div>
+          ) : (
+            '0'
+          )}
         </div>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails className={classes.moreInfo}>
