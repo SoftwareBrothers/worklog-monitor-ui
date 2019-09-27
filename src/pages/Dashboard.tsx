@@ -8,13 +8,13 @@ import { MembersContext } from '../components/MembersManager';
 
 const Dashboard = () => {
   const classes = useStyles();
-  const { setDisplayedDate } = useContext(MembersContext);
+  const { setDisplayedDate, date } = useContext(MembersContext);
 
   return (
     <Container className={classes.mainContainer} maxWidth="md">
       <Box display="flex" className={classes.inputs}>
         <SearchBar />
-        <DaySelector defaultDay={new Date()} onChange={setDisplayedDate} />
+        <DaySelector defaultDay={date} onChange={setDisplayedDate} />
       </Box>
       <MembersSplitter />
     </Container>
@@ -29,6 +29,7 @@ const useStyles = makeStyles({
   },
   mainContainer: {
     marginTop: '50px',
+    flexGrow: 1,
   },
 });
 
