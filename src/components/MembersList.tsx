@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const MembersList = () => {
-  const members = useContext(MembersContext).visibleMembers;
+  const { members } = useContext(MembersContext);
   const classes = useStyles();
 
   return (

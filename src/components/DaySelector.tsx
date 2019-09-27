@@ -6,7 +6,6 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
-import { makeStyles } from '@material-ui/styles';
 
 interface Props {
   defaultDay: Date | null;
