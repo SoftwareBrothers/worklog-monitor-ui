@@ -5,7 +5,7 @@ import { MembersContext } from './MembersManager';
 
 const SearchBar = () => {
   const classes = useStyles();
-  const { setFilters } = useContext(MembersContext);
+  const { setFilters, filters } = useContext(MembersContext);
   const handleOnChage = (event: any) => {
     setFilters(event.target.value.toLowerCase());
   };
@@ -17,6 +17,7 @@ const SearchBar = () => {
         id="standard-search"
         label="Search field"
         type="search"
+        value={filters}
         fullWidth
       />
     </form>

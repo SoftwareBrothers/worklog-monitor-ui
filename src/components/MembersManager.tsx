@@ -49,7 +49,8 @@ export const MembersManager: FC = () => {
       value={{
         loading,
         members: filteredMembers,
-        filters: displayedDate,
+        date: displayedDate,
+        filters,
         setFilters,
         setDisplayedDate,
       }}
@@ -66,7 +67,8 @@ export const MembersManager: FC = () => {
 interface MembersContextType {
   loading: boolean;
   members: Member[] | undefined;
-  filters: Date;
+  date: Date;
+  filters: string;
   setFilters: (filters: string) => void;
   setDisplayedDate: (date: Date) => void;
 }
@@ -74,7 +76,8 @@ interface MembersContextType {
 export const MembersContext = createContext<MembersContextType>({
   loading: true,
   members: undefined,
-  filters: new Date(),
+  date: new Date(),
+  filters: '',
   setFilters: () => {},
   setDisplayedDate: () => {},
 });

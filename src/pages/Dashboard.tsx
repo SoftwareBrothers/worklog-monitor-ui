@@ -8,13 +8,13 @@ import { MembersContext } from '../components/MembersManager';
 
 const Dashboard = () => {
   const classes = useStyles();
-  const { setDisplayedDate, filters } = useContext(MembersContext);
+  const { setDisplayedDate, date } = useContext(MembersContext);
 
   return (
     <Container className={classes.mainContainer} maxWidth="md">
       <Box display="flex" className={classes.inputs}>
         <SearchBar />
-        <DaySelector defaultDay={filters} onChange={setDisplayedDate} />
+        <DaySelector defaultDay={date} onChange={setDisplayedDate} />
       </Box>
       <MembersSplitter />
     </Container>
