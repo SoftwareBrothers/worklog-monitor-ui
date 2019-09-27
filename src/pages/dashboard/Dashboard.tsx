@@ -1,7 +1,7 @@
 import React from 'react';
-import DaySelector from "../../components/day-selector/DaySelector";
-import MembersList from "../../components/members-list/MembersList";
-import SearchBar from "../../components/search-bar/SearchBar";
+import DaySelector from "../../components/DaySelector/DaySelector";
+import MembersList from "../../components/MembersList/MembersList";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
 const Dashboard = () => {
     return(
