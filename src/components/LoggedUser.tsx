@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLogout, useUser } from '../AuthManager';
+import { useLogout, useUser } from './AuthManager';
 
 const LoggedUser = () => {
   const user = useUser();

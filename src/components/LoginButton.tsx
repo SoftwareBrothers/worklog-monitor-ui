@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import GoogleLogin from 'react-google-login';
-import { User } from '../../models/User';
-import { useLogin } from '../AuthManager';
+import { User } from '../models/User';
+import { useLogin } from './AuthManager';
 import { CircularProgress } from '@material-ui/core';
 
 const LoginButton: FC = () => {

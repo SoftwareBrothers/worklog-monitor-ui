@@ -1,7 +1,7 @@
 import React from 'react';
-import DaySelector from '../../components/DaySelector/DaySelector';
-import MembersList from '../../components/MembersList/MembersList';
-import SearchBar from '../../components/SearchBar/SearchBar';
+import DaySelector from '../components/DaySelector';
+import MembersList from '../components/MembersList/MembersList';
+import SearchBar from '../components/SearchBar';
 import { Container } from '@material-ui/core';
 
 const Dashboard = () => {

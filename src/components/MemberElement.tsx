@@ -1,5 +1,5 @@
 import React from 'react';
-import WorklogsList from '../WorklogsList/WorklogsList';
+import WorklogsList from './WorklogsList/WorklogsList';
 import {
   ExpansionPanel,
   ExpansionPanelDetails,
@@ -8,7 +8,6 @@ import {
   Theme,
   Typography,
   Avatar,
-  Box,
 } from '@material-ui/core';
 import { createStyles } from '@material-ui/styles';
 import ExpandMoreIcon from '@material-ui/core/SvgIcon/SvgIcon';
