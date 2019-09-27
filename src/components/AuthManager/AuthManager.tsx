@@ -23,7 +23,7 @@ const AuthManager: FC<Props> = ({ Authenticated, Anonymous }) => {
 
   useEffect(() => {
     if (token) {
-      interceptor.current = Axios.interceptors.request.use((config) => {
+      interceptor.current = Axios.interceptors.request.use(config => {
         config.headers = { Authorization: `Bearer ${token}` };
         return config;
       });

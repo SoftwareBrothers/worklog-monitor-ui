@@ -1,8 +1,9 @@
-import {Worklog} from "./Worklog";
+import { Worklog } from './Worklog';
 
 export interface Member {
-    id: string
-    name: string
-    isWorking: boolean
-    worklogs?: Worklog[]
+  id: string;
+  name: string;
+  isWorking: boolean;
+  picture: string;
+  worklogs?: Worklog[];
 }
