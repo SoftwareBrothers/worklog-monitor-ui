@@ -1,5 +1,5 @@
 import React from 'react';
-import WorklogsList from './WorklogsList/WorklogsList';
+import WorklogsList from './WorklogsList';
 import {
   ExpansionPanel,
   ExpansionPanelDetails,
@@ -11,10 +11,13 @@ import {
 } from '@material-ui/core';
 import { createStyles } from '@material-ui/styles';
 import ExpandMoreIcon from '@material-ui/core/SvgIcon/SvgIcon';
+import { Worklog } from '../models/Worklog';
 
 interface Props {
   name: string;
   picture: string;
+  id: string;
+  worklogs?: Worklog[];
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -55,6 +58,12 @@ const useStyles = makeStyles((theme: Theme) =>
       width: '200px',
       textAlign: 'right',
     },
+    moreInfo: {
+      borderColor: '#eaeaea',
+      borderWidth: '1px 0 0 0',
+      borderStyle: 'solid',
+      backgroundColor: '#ffffff',
+    },
   }),
 );
 
@@ -70,6 +79,7 @@ const MemberElement = (props: Props) => {
         classes={{
           content: classes.panelSummary,
         }}
+        href={'#'}
       >
         <div className={classes.panelSummaryLeft}>
           <Avatar
@@ -83,8 +93,8 @@ const MemberElement = (props: Props) => {
           <span>3 worklogs [8h 20m]</span>
         </div>
       </ExpansionPanelSummary>
-      <ExpansionPanelDetails>
-        <WorklogsList showAll={false} />
+      <ExpansionPanelDetails className={classes.moreInfo}>
+        <WorklogsList worklogs={props.worklogs ? props.worklogs : []} />
       </ExpansionPanelDetails>
     </ExpansionPanel>
   );
