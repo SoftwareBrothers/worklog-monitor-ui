@@ -9,7 +9,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { User } from '../../models/User';
+import { User } from '../models/User';
 
 interface Props {
   Authenticated: ElementType<any>;

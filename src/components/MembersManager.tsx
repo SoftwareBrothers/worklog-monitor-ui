@@ -1,9 +1,9 @@
-import React, { createContext, FC, useEffect, useState } from 'react';
-import { Member } from '../../models/Member';
+import React, { createContext, FC, useState } from 'react';
+import { Member } from '../models/Member';
 import { CircularProgress, makeStyles, Theme } from '@material-ui/core';
 import { createStyles } from '@material-ui/styles';
-import Dashboard from '../../pages/dashboard/Dashboard';
-import fakeMembers from '../../fakeMembers';
+import Dashboard from '../pages/Dashboard';
+import fakeMembers from '../fakeMembers';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

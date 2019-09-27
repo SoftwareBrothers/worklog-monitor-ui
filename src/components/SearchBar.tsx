@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles, Theme } from '@material-ui/core';
 import { createStyles } from '@material-ui/styles';
-import { MembersContext } from '../MembersManager/MembersManager';
+import { MembersContext } from './MembersManager';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

@@ -1,6 +1,6 @@
 import React from 'react';
-import { MembersManager } from '../../components/MembersManager/MembersManager';
-import UserAvatar from '../../components/UserAvatar/UserAvatar';
+import { MembersManager } from '../components/MembersManager';
+import UserAvatar from '../components/UserAvatar';
 import {
   AppBar,
   Toolbar,
