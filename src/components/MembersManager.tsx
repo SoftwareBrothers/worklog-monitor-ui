@@ -29,9 +29,6 @@ export const MembersManager: FC = () => {
     setVisibleMembers(phrase);
   };
 
-  console.log(visibleMembers);
-  console.log(members);
-
   return (
     <MembersContext.Provider
       value={{

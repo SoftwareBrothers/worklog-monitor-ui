@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import DaySelector from '../components/DaySelector';
-import MembersList from '../components/MembersList';
 import SearchBar from '../components/SearchBar';
-import { Container, Box, Theme } from '@material-ui/core';
-import { createStyles, makeStyles } from '@material-ui/styles';
+import { Container, Box } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
+import MembersSplitter from "../components/MembersSplitter";
 
 const Dashboard = () => {
   const classes = useStyles();
@@ -15,7 +15,7 @@ const Dashboard = () => {
         <SearchBar />
         <DaySelector defaultDay={date} onChange={setDate} />
       </Box>
-      <MembersList />
+      <MembersSplitter />
     </Container>
   );
 };
